@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍유건의 기묘한 모험</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #game-container {
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>홍유건의 기묘한 모험</h1>
+    <div id="game-container">
+        <p>어느 낯선 섬에서 눈을 떴습니다. 어떤 행동을 취하시겠습니까?</p>
+        <button onclick="exploreForest()">주변을 탐색한다</button>
+        <button onclick="callForHelp()">도움을 요청한다</button>
+        <button onclick="rest()">쉰다</button>
+    </div>
+
+    <script>
+        function exploreForest() {
+            var randomNumber = Math.random();
+            if (randomNumber < 0.2) {
+                document.getElementById("game-container").innerHTML = "<p>숲 속에서 마법사를 만났습니다! 마법사가 도와줍니다.</p><button onclick='restart()'>다시 시작</button>";
+            } else if (randomNumber < 0.5) {
+                document.getElementById("game-container").innerHTML = "<p>숲을 탐험하다가 무서운 동물을 만났습니다. 도망갑니다!</p><button onclick='restart()'>다시 시작</button>";
+            } else {
+                document.getElementById("game-container").innerHTML = "<p>모험을 시작합니다! 숲을 탐험합니다!</p><button onclick='exploreCave()'>동굴을 탐험한다</button><button onclick='searchRiver()'>강을 찾아간다</button><button onclick='findVillage()'>마을을 찾아간다</button>";
+            }
+        }
+
+        function exploreCave() {
+            var randomNumber = Math.random();
+            if (randomNumber < 0.3) {
+                document.getElementById("game-container").innerHTML = "<p>동굴 안에는 괴물이 있었습니다! 도망칩니다!</p><button onclick='restart()'>다시 시작</button>";
+            } else {
+                document.getElementById("game-container").innerHTML = "<p>동굴 안에는 보물이 있습니다! 축하합니다!</p><button onclick='restart()'>다시 시작</button>";
+            }
+        }
+
+        function searchRiver() {
+            var randomNumber = Math.random();
+            if (randomNumber < 0.5) {
+                document.getElementById("game-container").innerHTML = "<p>강을 발견했습니다! 시원한 물을 마시고 기분을 내려놓습니다.</p><button onclick='restart()'>다시 시작</button>";
+            } else {
+                document.getElementById("game-container").innerHTML = "<p>강을 따라 내려가다가 홍수에 휩쓸려 사망했습니다. 게임 오버!</p><button onclick='restart()'>다시 시작</button>";
+            }
+        }
+
+        function findVillage() {
+            var randomNumber = Math.random();
+            if (randomNumber < 0.7) {
+                document.getElementById("game-container").innerHTML = "<p>마을을 발견했습니다! 주민들이 환영해주고 음식을 제공합니다.</p><button onclick='restart()'>다시 시작</button>";
+            } else {
+                document.getElementById("game-container").innerHTML = "<p>마을을 찾아도 주민들이 살아있지 않았습니다. 불길한 마을이었습니다.</p><button onclick='restart()'>다시 시작</button>";
+            }
+        }
+
+        function callForHelp() {
+            document.getElementById("game-container").innerHTML = "<p>도움을 요청했지만 응답이 없습니다. 혼자에서 무엇을 할까요?</p><button onclick='exploreForest()'>주변을 탐색한다</button><button onclick='rest()'>쉰다</button>";
+        }
+
+        function rest() {
+            document.getElementById("game-container").innerHTML = "<p>휴식이 필요합니다. 조금 쉬고 다음 행동을 결정하세요.</p><button onclick='exploreForest()'>주변을 탐색한다</button><button onclick='callForHelp()'>도움을 요청한다</button>";
+        }
+
+        function restart() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
